@@ -127,33 +127,7 @@ function DessertMaker({
         </aside>
       )}
       <Modal isOpen={!!selectedMeal} onClose={() => setSelectedMeal(null)}>
-        
         {selectedMeal && <RecipeDetail meal={selectedMeal} />}
-          {/*<div className="recipe-content">
-            <img
-              src={selectedMeal.strMealThumb}
-              alt={`A prepared serving of ${selectedMeal.strMeal}`}
-              className="modal-img"
-            />
-            <h2>{selectedMeal.strMeal}</h2>
-            <div className="recipe-details">
-              <h3>Ingredients</h3>
-              <ul>
-                {Array.from({ length: 20 }).map((_, i) => {
-                  const ing = selectedMeal[`strIngredient${i + 1}`];
-                  const measure = selectedMeal[`strMeasure${i + 1}`];
-                  return ing ? (
-                    <li key={i}>
-                      {measure} {ing}
-                    </li>
-                  ) : null;
-                })}
-              </ul>
-              <h3>Instructions:</h3>
-              <p>{selectedMeal.strInstructions}</p>
-            </div>
-          </div>
-        )} */}
       </Modal>
     </div>
   );

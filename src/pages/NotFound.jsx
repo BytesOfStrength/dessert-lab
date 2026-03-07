@@ -6,7 +6,6 @@ function NotFound() {
       <p>Uh Oh! No recipes here.</p>
       <Link to="/">Return Home</Link>
     </div>
-    
   );
 }
 export default NotFound;

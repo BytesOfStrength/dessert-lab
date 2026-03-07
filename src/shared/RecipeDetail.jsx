@@ -22,7 +22,7 @@ function RecipeDetail({ meal }) {
             ) : null;
           })}
         </ul>
-        
+
         <h3>Instructions:</h3>
         <p className="instructions-text">{meal.strInstructions}</p>
       </div>
