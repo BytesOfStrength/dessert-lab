@@ -26,7 +26,7 @@ This project was developed as part of the React programming course to demonstrat
 
 ---
 
-##User Guide: How to use the Dessert Lab:
+## User Guide: How to use the Dessert Lab:
 
 1. **Search** : Provide at least 3 characters of an ingredient. Press **Search lab** This action fetches the first API request from the recipe database for the discover API.
 2. **Explore**: Click **View Recipe** to view full recipe's ingredients and instructions.
@@ -47,9 +47,10 @@ This project was bootstrapped with **Vite**. To run the application locally:
 
    ```bash
 
-git clone https://github.com/BytesOfStrength/dessert-lab.git
+   git clone https://github.com/BytesOfStrength/dessert-lab.git
 
-cd dessert-lab ```
+   cd dessert-lab 
+ ```
 
 2. **Install Dependencies**
    Run this command to install React, Vite, react-router, and React-icons in addition to other dependencies in the package.json file
@@ -74,10 +75,11 @@ npm install
 
 # API sources
 
-I am thankful for the open-source services and API's that provided the information need to run the recipe searches for my application.
+I am thankful for the open-source services and API's that provided the information needed to run the recipe searches for my application.
 
 **Recipe Data** Source: TheMealDB api (powered by TheMealDB) Purpose: open-source recipe database. The data was retrieved in two stages in order to avoid unncessary network traffic and to remain within the limits of the public free tier for educational use.
-Credit: TheMealDB is a public API which provides a public recipe database with a free tier for educational use. Visit their website at https://www.themealdb.com/api.php for more information.
+
+Credit: TheMealDB provides a public API which provides a recipe database with a free tier for educational use. Visit their website at https://www.themealdb.com/api.php for more information.
 
 ### Credentials:
 
