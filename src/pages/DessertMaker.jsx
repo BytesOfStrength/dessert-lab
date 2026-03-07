@@ -127,6 +127,7 @@ function DessertMaker({
         </aside>
       )}
       <Modal isOpen={!!selectedMeal} onClose={() => setSelectedMeal(null)}>
+        
         {selectedMeal && <RecipeDetail meal={selectedMeal} />}
           {/*<div className="recipe-content">
             <img

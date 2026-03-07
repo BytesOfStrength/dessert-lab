@@ -1,5 +1,5 @@
-function RecipeDetail({meal}) {
-  if(!meal) return null;
+function RecipeDetail({ meal }) {
+  if (!meal) return null;
   return (
     <div className="recipe-content">
       <img
@@ -22,6 +22,7 @@ function RecipeDetail({meal}) {
             ) : null;
           })}
         </ul>
+        
         <h3>Instructions:</h3>
         <p className="instructions-text">{meal.strInstructions}</p>
       </div>
