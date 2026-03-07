@@ -49,27 +49,27 @@ This project was bootstrapped with **Vite**. To run the application locally:
 
    git clone https://github.com/BytesOfStrength/dessert-lab.git
 
-   cd dessert-lab 
- ```
+   cd dessert-lab
+   ```
 
 2. **Install Dependencies**
-   Run this command to install React, Vite, react-router, and React-icons in addition to other dependencies in the package.json file
+  Run this command to install React, Vite, react-router, and React-icons in addition to other dependencies in the package.json file
 
 ```bash
-npm install 
+npm install
 ```
 
 3. **Environment Setup**
    Create a `.env.local` file in the root and add: `VITE_API_KEY=1`
 
 4. **Install the Development Server**
-    ```bash
-    npm run dev
-    ```
+
+   ```bash
+   npm run dev
+   ```
 
 5. **View App**
    Open browser to local url usually: http://localhost:5173
-
 
 ## API Endpoints and Data Fetching
 
@@ -83,7 +83,7 @@ Credit: TheMealDB provides a public API which provides a recipe database with a 
 
 ### Credentials:
 
-- * **API Key**: This project uses the the free public testing API key =1, provided for educational use by TheMealDB. To make sure the application runs correctly, you must create a `.env.local` file in the root directory  and add `VITE_API_KEY=1` to that file.
+- - **API Key**: This project uses the the free public testing API key =1, provided for educational use by TheMealDB. To make sure the application runs correctly, you must create a `.env.local` file in the root directory and add `VITE_API_KEY=1` to that file.
 
 1. **Discovery Endpoint(Filter by Category)**
    - **Purpose**: Retrieve initial lists of meals based on category
@@ -113,4 +113,7 @@ Credit: TheMealDB provides a public API which provides a recipe database with a 
 - **Typography:** Custom fonts provided by Google Fonts
 - **React Icons:** UI icons provided by [React Icons](https://react-icons.github.io/react-icons/), licensed under various open-source licenses (MIT, CC by 4.0, etc.)
 - **Licensing and Permission:** Code from this repository should not be cloned without giving credit to the original repository
-````
+
+```
+
+```
