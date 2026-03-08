@@ -87,23 +87,23 @@ Credit: TheMealDB provides a public API which provides a recipe database with a 
 
 1. **Discovery Endpoint(Filter by Category)**
    - **Purpose**: Retrieve initial lists of meals based on category
-   - **URL**: https://www.themealdb.com/api/json/v1/<API_KEY>/filter.php?c=Dessert
+   - **URL**: `https://www.themealdb.com/api/json/v1/<API_KEY>/filter.php?c=Dessert`
    - **Logic**: This endpoint returns an array of the meal name, the meal's thumbnail image, and id information. The application performs filtering in Home.jsx to match the users's ingredient input.
 
 2. **Detail Endpoint(Filter by ID)**
    - **Purpose**: Retrieve detailed information of an individual recipe such as instructions and ingredients.
-   - **URL**: https://www.themealdb.com/api/json/v1/<API_KEY>/lookup.php?i={idMeal}
+   - **URL**: `https://www.themealdb.com/api/json/v1/<API_KEY>/lookup.php?i={idMeal}`
    - **Logic**: App.jsx manages this fetch. This fetch is triggered when user clicks "View Recipe"button. The results are stored in a cache. If the user views the same recipe again on the Collection page, the app should pull from the cache instead of fetching an additional API call.
 
    ***
 
    ### Page Features:
 
-   **Home Page (Home.jsx)** Includes an ingredient search with user feedback and validation. Users can fetch the recipe, view instructions, and also save the recipes to their personal collection on the Collection page. This page uses CSS for styling and Javascript for form with a feedback for the user. the Home Page will show the current number of saved recipes in the user's collection.
+   * **Home Page (Home.jsx)** Includes an ingredient search with user feedback and validation. Users can fetch the recipe, view recipe details, and also save the recipes to their personal collection on the Collection page. The page displays a current count of saved recipes. This page uses CSS for styling and Javascript for form with a feedback for the user. 
 
-   **Collection Page (DessertMaker.jsx)** The collection of saved recipes will be saved on this page. **CRUD** (Create, Read, Update, Delete) can be done with the lab notes section on this page to each recipe. In addition, the user can remove individual saved recipes or reset the entire saved collection of recipes. The responsive design is from Javascript, Css layout, and React with Vite.
+   * **Collection Page (DessertMaker.jsx)** This page manages saved recipes. It uses **CRUD** (Create, Read, Update, Delete) functions. **(Create/Read)** The application loads saved recipes from localStorage which is triggered when the user clicks the **Favorite** button on the Home Page and renders them in the collection. **Update:** The users can add and modify notes in the "Lab Notes" section for each saved recipe. **Delete:** The user can remove individual saved recipes by clicking the **Saved** button or reset the entire saved collection of recipes by clicking the **Reset Lab Collection**. The responsive design is from Javascript, CSS styling, and React with Vite.
 
-   **NotFound page (NotFound.jsx)** This page is the error page if the user types in an invalid route. The page provides a link back to the main application.
+   * **NotFound page (NotFound.jsx)** This page is the error page if the user types in an invalid route. The page provides a link back to the main application.
 
    ***
 
