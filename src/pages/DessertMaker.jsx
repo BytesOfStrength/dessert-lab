@@ -109,7 +109,7 @@ function DessertMaker({
       </section>
       {favorites.length > 0 && (
         <aside className={styles.statusPanel}>
-          <h3>Lab Prep Checklist</h3>.
+          <h3>Lab Prep Checklist</h3>
           <ul className={styles.checklist}>
             <li>
               <input
