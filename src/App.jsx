@@ -9,7 +9,7 @@ import NotFound from './pages/NotFound';
 import './App.css';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const BASE_URL = `https//www.themealdb.com/api/json/v1/${API_KEY}`;
+const BASE_URL = `https://www.themealdb.com/api/json/v1/${API_KEY}`;
 
 function App() {
   const [error, setError] = useState('');
@@ -25,13 +25,13 @@ function App() {
     localStorage.setItem('lab-favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  useEffect (()=>{
-    const handleEscape =(e)=> {
-      if(e.key === "Escape") console.log('User pressed Esc');
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') console.log('User pressed Esc');
     };
     window.addEventListener('keydown', handleEscape);
-    return()=>window.removeEventListener('keydown',handleEscape);
-  },[]);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
 
   const toggleFavorite = useCallback((recipe) => {
     setFavorites((prev) => {
@@ -63,7 +63,7 @@ function App() {
       if (detailCache[idMeal]) {
         return detailCache[idMeal];
       }
-      const LOOKUP_URL = `${BASE_URL}/lookup.php?=${idMeal}`;
+      const LOOKUP_URL = `${BASE_URL}/lookup.php?i=${idMeal}`;
       try {
         const response = await fetch(LOOKUP_URL);
         const data = await response.json();
