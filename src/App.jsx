@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 
 import Navbar from './shared/Navbar';
 import Layout from './shared/Layout';
+import Home from './pages/Home';
+import DessertMaker from './pages/DessertMaker';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -39,48 +42,79 @@ function App() {
   }, []);
 
   const updateComment = (idMeal, newComment) => {
-    setFavorites((prev)=>
-      prev.map((fav)=>
-      fav.idMeal === idMeal ? {...fav,notes: newComment}: fav));
+    setFavorites((prev) =>
+      prev.map((fav) =>
+        fav.idMeal === idMeal ? { ...fav, notes: newComment } : fav
+      )
+    );
   };
 
-  const getDetails = useCallback (
-    async (idMeal) =>{
+  const getDetails = useCallback(
+    async (idMeal) => {
       setError('');
-      if(detailCache[idMeal]) {
-        return detailCache [idMeal];
+      if (detailCache[idMeal]) {
+        return detailCache[idMeal];
       }
       const LOOKUP_URL = `${BASE_URL}/lookup.php?=${idMeal}`;
-      try { 
-        const response= await fetch(LOOKUP_URL);
+      try {
+        const response = await fetch(LOOKUP_URL);
         const data = await response.json();
-        if(!data.meals) {
-          throw new Error ('No recipe data found');
+        if (!data.meals) {
+          throw new Error('No recipe data found');
         }
         const details = data.meals[0];
-        setDetailCache((prev)=>({...prev, [idMeal]:details}));
+        setDetailCache((prev) => ({ ...prev, [idMeal]: details }));
         return details;
-
-      }catch (error){
+      } catch (error) {
         setError('Problem loading recipe details.');
         return null;
-
       }
-    },[detailCache]
+    },
+    [detailCache]
   );
-    const clearAllFavorites = ()=> {
-      if (window.confirm ('Are you sure you want to reset your lab?')) {
-        setFavorites([]);
-      }
-    };
+  const clearAllFavorites = () => {
+    if (window.confirm('Are you sure you want to reset your lab?')) {
+      setFavorites([]);
+    }
+  };
 
   return (
     <div className="app-wrapper">
       <Navbar />
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create" element={<DessertMaker />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                baseUrl={BASE_URL}
+                error={error}
+                setError={setError}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+                detailCache={detailCache}
+                getDetails={getDetails}
+                meals={searchResults}
+                setMeals={setSearchResults}
+                lastSearch={lastSearchTerm}
+                setLastSearch={setLastSearchTerm}
+              />
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <DessertMaker
+                error={error}
+                setError={setError}
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+                getDetails={getDetails}
+                updateComment={updateComment}
+                clearAll={clearAllFavorites}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
