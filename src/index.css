@@ -1,0 +1,23 @@
+:root {
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --primary-color: #d81b60;
+  --bg-light: #fff5f8;
+  --text-main: #2d3436;
+  --secondary-color: #ff8a65;
+  --accent-blue: #5c6bc0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background-color: var(--bg-light);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}

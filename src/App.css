@@ -1,0 +1,77 @@
+*{
+  box-sizing: border-box;
+}
+
+.page-wrapper {
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x:hidden;
+}
+
+.content-container {
+  flex:1;
+  width: 100%;
+  max-width: 1120px;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+.home-header h1,
+.header h1 {
+  font-size: 2rem;
+  margin-bottom:0.5rem;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.recipe-card-detail{
+  background: white;
+  width: 95%;
+  max-width: 550px;
+  max-height: 90vh;
+  border-radius: 12px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-img {
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto 1rem auto;
+  object-fit: cover;
+}
+
+.recipe-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.recipe-details {
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.lab-status-bar{
+  margin: 0.125rem;
+}
+.footer{
+  text-align: center;
+  padding:1.5rem;
+  background-color: var(--bg-light);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  font-family: var(--font-body);
+  color: var(--text-main);
+  opacity: 0.7;
+}
