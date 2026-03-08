@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import DessertSearch from '../features/DessertSearch.jsx';
-import DessertCard from '../features/DessertCard.jsx';
+import DessertSearch from '../features/DessertSearch';
+import DessertCard from '../features/DessertCard';
 import RecipeDetail from '../shared/RecipeDetail';
-import Modal from '../shared/Modal.jsx';
+import Modal from '../shared/Modal';
 import styles from '../features/DessertCard.module.css';
 
 function Home({

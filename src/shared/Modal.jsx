@@ -1,5 +1,4 @@
 function Modal({ isOpen, onClose, children }) {
-  //Rubric: conditionally rendered element
   if (!isOpen) return null;
   return (
     <div className="recipe-overlay" onClick={onClose}>

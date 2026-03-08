@@ -29,3 +29,4 @@ function RecipeDetail({ meal }) {
     </div>
   );
 }
+export default RecipeDetail;
