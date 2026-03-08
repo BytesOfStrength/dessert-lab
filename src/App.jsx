@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Navbar from './shared/Navbar';
 import Layout from './shared/Layout';
@@ -24,6 +24,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem('lab-favorites', JSON.stringify(favorites));
   }, [favorites]);
+
+  useEffect (()=>{
+    const handleEscape =(e)=> {
+      if(e.key === "Escape") console.log('User pressed Esc');
+    };
+    window.addEventListener('keydown', handleEscape);
+    return()=>window.removeEventListener('keydown',handleEscape);
+  },[]);
 
   const toggleFavorite = useCallback((recipe) => {
     setFavorites((prev) => {
