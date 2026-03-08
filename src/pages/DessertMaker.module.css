@@ -149,15 +149,24 @@
 
 @media (min-width: 1140px) {
   .makerPage {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 1fr));
-    gap: 3rem;
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+    
+  }
+  .recipeList{
+    display:grid;
+    grid-template-columns: repeat(auto-fill minmax(350px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+     
   }
   .collection {
     grid-column: 1;
   }
   .header {
-    grid-column: 1/-1;
+    margin-bottom: 3rem;
     text-align: center;
   }
   .clearBtn {
