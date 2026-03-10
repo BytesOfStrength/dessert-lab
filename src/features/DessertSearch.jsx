@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import styles from './DessertSearch.module.css';
 
-function DessertSearch({ onSearch, error }) {
+function DessertSearch({ onSearch, error ,disabled}) {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(inputValue);
+    setInputValue('');
   };
   return (
     <section className="search-feature">
-      <form onSubmit={handleSubmit} className={styles.searchBox}>
+      <form
+        id="dessert-search-form"
+        onSubmit={handleSubmit}
+        className={styles.searchBox}
+        role="search"
+      >
         <label htmlFor="ingredient-input">Search Ingredient:</label>
         <input
           className={styles.searchInput}
@@ -20,8 +26,9 @@ function DessertSearch({ onSearch, error }) {
           placeholder="e.g., chocolate"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          disabled={disabled}
         />
-        <button type="submit" className={styles.searchBtn}>
+        <button type="submit" disabled={disabled} className={styles.searchBtn}>
           Search Lab
         </button>
       </form>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DessertCard from '../features/DessertCard';
 import RecipeDetail from '../shared/RecipeDetail';
 import Modal from '../shared/Modal';
@@ -9,12 +9,25 @@ function DessertMaker({
   toggleFavorite,
   clearAll,
   getDetails,
+  detailsLoading,
   updateComment,
   error,
   setError,
 }) {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [editingId, setEditingId] = useState(null);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setEditingId(null);
+      }
+    };
+    if (editingId) {
+      window.addEventListener('keydown', handleEscape);
+    }
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [editingId]);
 
   const handleViewDetails = async (idMeal) => {
     setError('');
@@ -126,7 +139,11 @@ function DessertMaker({
           </ul>
         </aside>
       )}
-      <Modal isOpen={!!selectedMeal} onClose={() => setSelectedMeal(null)}>
+      <Modal
+        isOpen={!!selectedMeal}
+        onClose={() => setSelectedMeal(null)}
+        isLoading={detailsLoading}
+      >
         {selectedMeal && <RecipeDetail meal={selectedMeal} />}
       </Modal>
     </div>

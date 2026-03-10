@@ -11,12 +11,13 @@ function RecipeDetail({ meal }) {
       <div className="recipe-details">
         <h3>Ingredients:</h3>
         <ul className="ingredient-list">
+{/* the Array length is chosen due to the API's data which limits each recipe to 20 ingredients and measurements*/}
           {Array.from({ length: 20 }).map((_, i) => {
             const ingredient = meal[`strIngredient${i + 1}`];
             const measure = meal[`strMeasure${i + 1}`];
             return ingredient ? (
-              <li key={i}>
-                {measure}
+              <li key={`${meal.idMeal}-ingredient-${i}`}>
+                {measure}&nbsp;
                 {ingredient}
               </li>
             ) : null;
