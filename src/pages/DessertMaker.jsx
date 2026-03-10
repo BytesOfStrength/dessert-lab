@@ -16,6 +16,7 @@ function DessertMaker({
 }) {
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [editingId, setEditingId] = useState(null);
+  const [temporaryNote, setTemporaryNote] = useState('');
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -77,16 +78,17 @@ function DessertMaker({
                       <textarea
                         id={`notes-${meal.idMeal}`}
                         name="recipeNotes"
-                        value={meal.notes || ''}
-                        onChange={(e) =>
-                          updateComment(meal.idMeal, e.target.value)
-                        }
+                        value={temporaryNote}
+                        onChange={(e) => setTemporaryNote(e.target.value)}
                         placeholder="Enter your comments"
                         autoFocus
                       />
                       <button
                         className={styles.saveBtn}
-                        onClick={() => setEditingId(null)}
+                        onClick={() => {
+                          updateComment(meal.idMeal, temporaryNote);
+                          setEditingId(null);
+                        }}
                       >
                         Done
                       </button>
@@ -99,7 +101,10 @@ function DessertMaker({
                       <div className={styles.noteActions}>
                         <button
                           className={styles.editBtn}
-                          onClick={() => setEditingId(meal.idMeal)}
+                          onClick={() => {
+                            setEditingId(meal.idMeal);
+                            setTemporaryNote(meal.notes || '');
+                          }}
                         >
                           {meal.notes ? 'Edit Note' : 'Add Note'}
                         </button>
