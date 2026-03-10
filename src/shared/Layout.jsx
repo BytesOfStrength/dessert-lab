@@ -1,3 +1,4 @@
+import "../App.css";
 function Layout({ children }) {
   return (
     <div className="page-wrapper">
