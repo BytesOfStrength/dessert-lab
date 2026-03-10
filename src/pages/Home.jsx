@@ -10,6 +10,7 @@ function Home({
   favorites,
   toggleFavorite,
   getDetails,
+  detailsLoading,
   meals,
   setMeals,
   lastSearch,
@@ -25,23 +26,30 @@ function Home({
 
   const handleSearch = async (searchTerm) => {
     const userInput = searchTerm.toLowerCase().trim();
+    setSelectedMeal(null);
+
+    if (loading) return;
+    if (userInput === lastSearch.toLowerCase().trim()) return;
 
     setError('');
+    setMeals([]);
+    setLoading(true);
+    setHasSearched(true);
+
     if (!userInput) {
       setError(`Please enter an ingredient to search.`);
       setHasSearched(false);
-
+      setLoading(false);
       return;
     }
     if (userInput.length < 3) {
       setError(`Please enter at least 3 characters.`);
       setHasSearched(false);
-      //why is setMeals set to an empty array for this error messaage and not for !userInput
       setMeals([]);
+      setLoading(false);
       return;
     }
-    setLoading(true);
-    setHasSearched(true);
+
     setLastSearch(searchTerm);
 
     try {
@@ -57,12 +65,15 @@ function Home({
         setMeals([]);
       }
     } catch (err) {
-      setError(`Something went wrong with the search`);
+      setMeals([]);
+      setHasSearched(false);
+      setError('Something went wrong with the search');
     } finally {
       setLoading(false);
     }
   };
   const handleViewDetails = async (idMeal) => {
+    setError('');
     const details = await getDetails(idMeal);
     if (details) {
       setSelectedMeal(details);
@@ -75,7 +86,7 @@ function Home({
         <p>Enter an ingredient to find recipes!</p>
         <p>Saved recipes will be added to your personal lab collection page.</p>
       </header>
-      <DessertSearch onSearch={handleSearch} error={error} />
+      <DessertSearch onSearch={handleSearch} error={error} disabled={loading} />
       <section className="results-section">
         {loading && <p className="loading-text">Scanning the Lab...</p>}
         {!loading && hasSearched && meals.length === 0 && (
@@ -95,7 +106,11 @@ function Home({
           ))}
         </div>
       </section>
-      <Modal isOpen={!!selectedMeal} onClose={() => setSelectedMeal(null)}>
+      <Modal
+        isOpen={!!selectedMeal}
+        onClose={() => setSelectedMeal(null)}
+        isLoading={detailsLoading}
+      >
         {selectedMeal && <RecipeDetail meal={selectedMeal} />}
       </Modal>
       {favorites.length > 0 && (

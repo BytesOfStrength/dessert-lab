@@ -153,14 +153,12 @@
     max-width: 1200px;
     margin: 0 auto;
     gap: 2rem;
-    
   }
-  .recipeList{
-    display:grid;
+  .recipeList {
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2.5rem;
     width: 100%;
-     
   }
   .collection {
     grid-column: 1;

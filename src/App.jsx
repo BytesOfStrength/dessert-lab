@@ -20,18 +20,11 @@ function App() {
   const [detailCache, setDetailCache] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   const [lastSearchTerm, setLastSearchTerm] = useState('');
+  const [detailsLoading, setDetailsLoading] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('lab-favorites', JSON.stringify(favorites));
   }, [favorites]);
-
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape') console.log('User pressed Esc');
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, []);
 
   const toggleFavorite = useCallback((recipe) => {
     setFavorites((prev) => {
@@ -63,6 +56,7 @@ function App() {
       if (detailCache[idMeal]) {
         return detailCache[idMeal];
       }
+      setDetailsLoading(true);
       const LOOKUP_URL = `${BASE_URL}/lookup.php?i=${idMeal}`;
       try {
         const response = await fetch(LOOKUP_URL);
@@ -76,9 +70,11 @@ function App() {
       } catch (error) {
         setError('Problem loading recipe details.');
         return null;
+      } finally {
+        setDetailsLoading(false);
       }
     },
-    [detailCache]
+    [detailCache, BASE_URL]
   );
   const clearAllFavorites = () => {
     if (window.confirm('Are you sure you want to reset your lab?')) {
@@ -102,6 +98,7 @@ function App() {
                 toggleFavorite={toggleFavorite}
                 detailCache={detailCache}
                 getDetails={getDetails}
+                detailsLoading={detailsLoading}
                 meals={searchResults}
                 setMeals={setSearchResults}
                 lastSearch={lastSearchTerm}
@@ -118,6 +115,7 @@ function App() {
                 favorites={favorites}
                 toggleFavorite={toggleFavorite}
                 getDetails={getDetails}
+                detailsLoading={detailsLoading}
                 updateComment={updateComment}
                 clearAll={clearAllFavorites}
               />
