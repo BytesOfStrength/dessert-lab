@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 function NotFound() {
   return (
-    <div>
+    <div className="invalid-pg">
       <h1>Page Not Found</h1>
       <p>Uh Oh! No recipes here.</p>
       <Link to="/">Return Home</Link>

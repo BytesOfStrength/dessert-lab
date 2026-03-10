@@ -18,8 +18,9 @@
   padding: 1rem;
 }
 
-.home-header h1,
-.header h1 {
+/*.home-header h1,
+.header h1 {*/
+h1{
   font-size: 2rem;
   margin-bottom:0.5rem;
   color: var(--primary-color);
@@ -112,6 +113,9 @@
 }
 .lab-status-bar{
   margin: 0.125rem;
+}
+.invalid-pg {
+ text-align: center;
 }
 .footer{
   text-align: center;
