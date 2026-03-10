@@ -26,19 +26,11 @@ function Home({
 
   const handleSearch = async (searchTerm) => {
     const userInput = searchTerm.toLowerCase().trim();
-    setSelectedMeal(null);
-
-    if (loading) return;
-    if (userInput === lastSearch.toLowerCase().trim()) return;
-
-    setError('');
-    setMeals([]);
-    setLoading(true);
-    setHasSearched(true);
 
     if (!userInput) {
       setError(`Please enter an ingredient to search.`);
       setHasSearched(false);
+      setMeals([]);
       setLoading(false);
       return;
     }
@@ -50,6 +42,14 @@ function Home({
       return;
     }
 
+    if (loading) return;
+    if (userInput === lastSearch.toLowerCase().trim()) return;
+
+    setSelectedMeal(null);
+    setError('');
+    setMeals([]);
+    setLoading(true);
+    setHasSearched(true);
     setLastSearch(searchTerm);
 
     try {
