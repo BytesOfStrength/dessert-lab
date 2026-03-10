@@ -63,7 +63,6 @@ function DessertMaker({
             {favorites.map((meal) => (
               <div key={meal.idMeal} className={styles.labEntry}>
                 <DessertCard
-                  key={meal.idMeal}
                   meal={meal}
                   isFav={true}
                   onFavorite={toggleFavorite}
@@ -73,27 +72,32 @@ function DessertMaker({
                   <label htmlFor={`notes-${meal.idMeal}`}>
                     <h4>Lab Notes</h4>
                   </label>
-                  {editingId === meal.idMeal ? (
-                    <div className={styles.editMode}>
-                      <textarea
-                        id={`notes-${meal.idMeal}`}
-                        name="recipeNotes"
-                        value={temporaryNote}
-                        onChange={(e) => setTemporaryNote(e.target.value)}
-                        placeholder="Enter your comments"
-                        autoFocus
-                      />
-                      <button
-                        className={styles.saveBtn}
-                        onClick={() => {
-                          updateComment(meal.idMeal, temporaryNote);
-                          setEditingId(null);
-                        }}
-                      >
-                        Done
-                      </button>
-                    </div>
-                  ) : (
+                  <div
+                    className={
+                      editingId === meal.idMeal
+                        ? styles.editMode
+                        : styles.hidden
+                    }
+                  >
+                    <textarea
+                      id={`notes-${meal.idMeal}`}
+                      name="recipeNotes"
+                      value={temporaryNote ?? ''}
+                      onChange={(e) => setTemporaryNote(e.target.value)}
+                      placeholder="Enter your comments"
+                      autoFocus={editingId === meal.idMeal}
+                    />
+                    <button
+                      className={styles.saveBtn}
+                      onClick={() => {
+                        updateComment(meal.idMeal, temporaryNote);
+                        setEditingId(null);
+                      }}
+                    >
+                      Done
+                    </button>
+                  </div>
+                  {editingId !== meal.idMeal && (
                     <div className={styles.viewMode}>
                       <p className={styles.noteText}>
                         {meal.notes ? meal.notes : <em> No notes added yet</em>}
@@ -125,6 +129,7 @@ function DessertMaker({
           </div>
         )}
       </section>
+
       {favorites.length > 0 && (
         <aside className={styles.statusPanel}>
           <h3>Lab Prep Checklist</h3>
@@ -145,7 +150,7 @@ function DessertMaker({
         </aside>
       )}
       <Modal
-        isOpen={!!selectedMeal}
+        isOpen={!!selectedMeal || detailsLoading}
         onClose={() => setSelectedMeal(null)}
         isLoading={detailsLoading}
       >

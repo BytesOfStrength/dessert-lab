@@ -131,7 +131,16 @@
   color: #ffffff;
   transform: translateY(-2px);
 }
+.hidden{
+  display: none;
+}
 
+.editMode{
+  display:flex;
+  flex-direction: column;
+  gap:0.5rem;
+
+}
 /*Tablet (768px and up) */
 
 @media (min-width: 768px) {
