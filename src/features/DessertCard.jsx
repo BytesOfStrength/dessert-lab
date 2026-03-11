@@ -15,10 +15,14 @@ function DessertCard({ meal, onDetails, onFavorite, isFav }) {
           <button
             className={isFav ? styles.favActive : ''}
             onClick={() => onFavorite(meal)}
-            aria-label = {isFav ? "Remove from favorites" : "Add to favorites"}
+            aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
           >
             <span>
-              {isFav ? (<FaHeart color="red" aria-hidden="true"/> ): (<FaRegHeart aria-hidden="true" />)}
+              {isFav ? (
+                <FaHeart color="red" aria-hidden="true" />
+              ) : (
+                <FaRegHeart aria-hidden="true" />
+              )}
               {isFav ? ' Saved' : ' Favorite'}
             </span>
           </button>

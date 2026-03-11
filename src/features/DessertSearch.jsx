@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './DessertSearch.module.css';
 
-function DessertSearch({ onSearch, error ,disabled}) {
+function DessertSearch({ onSearch, error, disabled }) {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e) => {
